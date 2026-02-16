@@ -1,0 +1,38 @@
+"""
+Step 1 — Install gmpy2 on your linux
+pip install gmpy2
+or
+python3 -m venv rsa-venv
+source rsa-venv/bin/activate
+pip install gmpy2
+Step 2 — Save This Script in to a file
+nano file.py
+"""
+
+# the python code 
+
+import gmpy2
+
+# Given values
+n = <very large modulus>
+
+e = 10
+
+c = <very large ciphertext>
+
+# Try integer 10th root
+m, exact = gmpy2.iroot(c, e)
+
+if exact:
+    print("[+] Exact root found!")
+    print("Plaintext integer:", m)
+    print("As bytes:", int(m).to_bytes((m.bit_length() + 7) // 8, 'big'))
+else:
+    print("[-] Attack failed.")
+    print("The plaintext is too large (m^e >= n).")
+
+
+"""
+Step 3 — Run the commend to run the python program using the linux terminal
+  python file.py (code that need to be copy in the linux terminal to show you the flag)
+"""
