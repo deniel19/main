@@ -1,0 +1,81 @@
+# Display hours where digits form a strictly increasing sequence
+# Keep only those where the sum of digits is prime
+# Display times in two columns: left (ascending), right (descending)
+
+# Function to check if a number is prime
+def is_prime(n):
+    if n < 2:
+        return False
+    for i in range(2, int(n**0.5)+1):
+        if n % i == 0:
+            return False
+    return True
+
+# Lists to store results
+ascending_times = []
+descending_times = []
+
+# Iterate through all hours and minutes
+for hour in range(24):
+    for minute in range(60):
+        digits = f"{hour:02d}{minute:02d}"
+        digit_sum = sum(int(c) for c in digits)
+        
+        # Check strictly increasing digits and sum of digits prime
+        if all(digits[i] < digits[i+1] for i in range(3)) and is_prime(digit_sum):
+            ascending_times.append(f"{hour:02d}:{minute:02d}")
+
+# Create descending list (reverse of ascending)
+descending_times = ascending_times[::-1]
+
+# Determine max length for proper column display
+max_len = max(len(ascending_times), len(descending_times))
+
+# Display header
+print(f"{'ASCENDING':<10} | {'DESCENDING'}")
+print("-" * 25)
+
+# Display times in two columns
+for i in range(max_len):
+    left = ascending_times[i] if i < len(ascending_times) else ""
+    right = descending_times[i] if i < len(descending_times) else ""
+    print(f"{left:<10} | {right}")
+
+
+
+"""
+Display code Python
+ASCENDING  | DESCENDING
+-------------------------
+01:24      | 23:59
+01:28      | 23:57
+01:37      | 23:48
+01:39      | 14:59
+01:46      | 14:57
+01:48      | 13:58
+01:57      | 13:49
+02:36      | 13:45
+02:38      | 12:59
+02:45      | 12:46
+02:47      | 12:37
+02:56      | 12:35
+03:46      | 04:58
+03:59      | 03:59
+04:58      | 03:46
+12:35      | 02:56
+12:37      | 02:47
+12:46      | 02:45
+12:59      | 02:38
+13:45      | 02:36
+13:49      | 01:57
+13:58      | 01:48
+14:57      | 01:46
+14:59      | 01:39
+23:48      | 01:37
+23:57      | 01:28
+23:59      | 01:24
+
+
+** Process exited - Return Code: 0 **
+"""
+
