@@ -1,12 +1,12 @@
 # Display all palindrome times in a day (24h format)
 
 
-for ora in range(24):
-    for minut in range(60):
-        timp = f"{ora:02d}:{minut:02d}"
-        # verificăm palindromul fără caracterul :
-        if timp.replace(":", "") == timp.replace(":", "")[::-1]:
-            print(timp)
+for hour in range(24):
+    for minute in range(60):
+        time_str = f"{hour:02d}:{minute:02d}"
+        # Remove colon and check if the string is the same forwards and backwards
+        if time_str.replace(":", "") == time_str.replace(":", "")[::-1]:
+            print(time_str)
 
 
 """
