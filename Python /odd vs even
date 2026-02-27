@@ -1,0 +1,52 @@
+# Display all palindrome times in a day (24h format)
+ # Separate palindrome hours into odd and even minutes and display in two columns
+
+odd_minutes = []
+even_minutes = []
+
+for hour in range(24):
+    for minute in range(60):
+        time_str = f"{hour:02d}:{minute:02d}"
+        digits = time_str.replace(":", "")
+        if digits == digits[::-1]:
+            if minute % 2 != 0:
+                odd_minutes.append(time_str)
+            else:
+                even_minutes.append(time_str)
+
+# Sort both lists
+odd_minutes.sort()
+even_minutes.sort()
+
+# Display in two columns
+max_len = max(len(odd_minutes), len(even_minutes))
+
+print(f"{'ODD':<10} | {'EVEN'}")
+print("-" * 22)
+
+for i in range(max_len):
+    left = odd_minutes[i] if i < len(odd_minutes) else ""
+    right = even_minutes[i] if i < len(even_minutes) else ""
+    print(f"{left:<10} | {right}")
+
+
+"""
+Display code Python
+ODD        | EVEN
+----------------------
+10:01      | 00:00
+11:11      | 01:10
+12:21      | 02:20
+13:31      | 03:30
+14:41      | 04:40
+15:51      | 05:50
+           | 20:02
+           | 21:12
+           | 22:22
+           | 23:32
+
+
+** Process exited - Return Code: 0 **
+"""
+
+
