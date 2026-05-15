@@ -35,4 +35,5 @@ else:
 """
 Step 3 — Run the commend to run the python program using the linux terminal
   python file.py (code that need to be copy in the linux terminal to show you the flag)
+test
 """
